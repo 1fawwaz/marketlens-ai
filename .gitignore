@@ -1,0 +1,44 @@
+# Raw CSVs — do not modify source files; obtain from Kaggle for ETL
+data/raw/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+frontend/.env.local
+frontend/.env*.local
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Node / Next.js
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+.npm/
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# Build / logs
+*.log
+pytest_final.log
+pytest_final_run.txt
+
+# Vercel
+.vercel/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

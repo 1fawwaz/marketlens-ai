@@ -1,0 +1,37 @@
+# MarketLens AI — full stack dependencies
+
+# Phase 0
+pandas>=2.0.0
+psycopg2-binary>=2.9.9
+python-dotenv>=1.0.0
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+sqlalchemy>=2.0.0
+
+# Phase 1 — ML
+numpy>=1.26.0
+scikit-learn>=1.4.0
+xgboost>=2.0.0
+prophet>=1.1.5
+statsmodels>=0.14.0
+
+# Phase 2 — MCP
+mcp>=1.2.0
+pydantic>=2.6.0
+pydantic-settings>=2.2.0
+
+# Phase 3 — Agent + API
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+httpx>=0.27.0
+langgraph>=0.2.0
+langchain-core>=0.3.0
+langchain-groq>=0.2.0
+
+# Phase 4 — RAG
+rank-bm25>=0.2.2
+sentence-transformers>=2.7.0
+
+# Phase 6 — Auth
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4

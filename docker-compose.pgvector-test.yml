@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: marketlens-postgres-pgvector-test
+    environment:
+      POSTGRES_DB: marketlens
+      POSTGRES_USER: marketlens
+      POSTGRES_PASSWORD: marketlens_dev
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./sql/schema_extensions.sql:/docker-entrypoint-initdb.d/02_schema_extensions.sql:ro
+      - ./sql/03_pgvector.sql:/docker-entrypoint-initdb.d/03_pgvector.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marketlens -d marketlens"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
