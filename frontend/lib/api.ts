@@ -1,4 +1,15 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE ||
+  (process.env.NODE_ENV === "production" ? "" : "http://localhost:8000");
+
+function requireApiBase(): string {
+  if (!API_BASE) {
+    throw new Error(
+      "NEXT_PUBLIC_API_BASE is not configured. Set it in Vercel project settings.",
+    );
+  }
+  return API_BASE;
+}
 
 async function parseErrorMessage(resp: Response): Promise<string> {
   try {
@@ -23,7 +34,7 @@ export async function apiFetch<T>(
 ): Promise<T> {
   let resp: Response;
   try {
-    resp = await fetch(`${API_BASE}${path}`, {
+    resp = await fetch(`${requireApiBase()}${path}`, {
       ...options,
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +44,7 @@ export async function apiFetch<T>(
     });
   } catch {
     throw new Error(
-      `Cannot reach API at ${API_BASE}. Is the backend running?`,
+      `Cannot reach API at ${requireApiBase()}. Is the backend running?`,
     );
   }
 
@@ -47,14 +58,14 @@ export async function apiFetch<T>(
 export async function login(username: string, password: string) {
   let resp: Response;
   try {
-    resp = await fetch(`${API_BASE}/auth/login`, {
+    resp = await fetch(`${requireApiBase()}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
   } catch {
     throw new Error(
-      `Cannot reach API at ${API_BASE}. Is the backend running?`,
+      `Cannot reach API at ${requireApiBase()}. Is the backend running?`,
     );
   }
   if (resp.status === 401) {

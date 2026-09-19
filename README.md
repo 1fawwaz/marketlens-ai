@@ -119,6 +119,8 @@ Never commit `.env` or real secret values.
 
 See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the full production checklist.
 
+**Production frontend:** https://marketlens-ai-liard.vercel.app (requires `NEXT_PUBLIC_API_BASE` and a deployed backend)
+
 ## Data provenance
 
 | Source | Type | Notes |
